@@ -13,16 +13,24 @@ if ("WebSocket" in window) {
             'token':'69',
             'method':'system.multicall',
             'params': [[
-            {'methodName':'system.listMethods',
-            'params':[['token:69']]},
-            {'methodName':'system.listNotifications',
-            'params':[['token:69']]},
-            {'methodName':'aria2.tellActive',
+            // {'methodName':'system.listMethods',
+            // 'params':[['token:69']]},
+
+            // {'methodName':'system.listNotifications',
+            // 'params':[['token:69']]},
+            
+            {'methodName':'aria2.getVersion',
             'params':['token:69']},
-            {'methodName':'aria2.tellWaiting',
-            'params':['token:69',0,666]},
-            {'methodName':'aria2.tellStopped',
-            'params':['token:69',0,666]},
+
+            // {'methodName':'aria2.getGlobalOption',
+            // 'params':['token:69']},
+
+            // {'methodName':'aria2.tellActive',
+            // 'params':['token:69']},
+            // {'methodName':'aria2.tellWaiting',
+            // 'params':['token:69',0,666]},
+            // {'methodName':'aria2.tellStopped',
+            // 'params':['token:69',0,666]},
         ]]
         }));
 
