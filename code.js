@@ -1,10 +1,12 @@
 // https://javascript.info/websocket
 // https://aria2.github.io/manual/en/html/aria2c.html#rpc-interface
 
-if ("WebSocket" in window) {
-    let ws = new WebSocket("ws://127.0.0.1:6800/jsonrpc");
+// cd /home/groot/Documents/aria2_www/;aria2c --enable-rpc=true --rpc-secret=69 --rpc-listen-port=6800 --allow-overwrite=true --max-overall-download-limit=64K ubuntu-21.10-desktop-amd64.iso.torrent ubuntu-20.04.3-desktop-amd64.iso.torrent
 
-    ws.onopen = function(e) {
+if ("WebSocket" in window) {
+    const ws = new WebSocket("ws://127.0.0.1:6800/jsonrpc");
+
+    ws.onopen = function(_e) {
         console.log("[open] Connection established");
         console.log("Sending to server");
         ws.send(JSON.stringify({
@@ -42,11 +44,13 @@ if ("WebSocket" in window) {
         const rpc_respond = JSON.parse(event.data);
         console.log(`[message] Data received from server: ${event.data}`);
         // alert(rpc_respond.result);
-        document.getElementById("one-panel").innerHTML = JSON.stringify(rpc_respond.result[0][0]);
+        document.getElementById("one-panel").innerHTML = JSON.stringify(rpc_respond.result[0][0], null, 4);
         // document.getElementById("0").innerHTML = JSON.stringify(rpc_respond.result[0][0][0].infoHash) + " - " +  JSON.stringify(rpc_respond.result[0][0][0].bittorrent.info.name);
-        document.getElementById("two-panel").innerHTML = JSON.stringify(rpc_respond.result[1]);
-        document.getElementById("three-panel").innerHTML = JSON.stringify(rpc_respond.result[2]);
-        document.getElementById("four-panel").innerHTML = JSON.stringify(rpc_respond.result[3][0]);
+        document.getElementById("two-panel").innerHTML = JSON.stringify(rpc_respond.result[1][0], null, 4);
+        document.getElementById("three-panel").innerHTML = JSON.stringify(rpc_respond.result[2][0], null, 4);
+        document.getElementById("four-panel").innerHTML = JSON.stringify(rpc_respond.result[3][0], null, 4);
+
+        show_config(rpc_respond.result[3][0])
         
     };
 
@@ -69,3 +73,32 @@ else {
     // The browser doesn't support WebSocket
     alert("WebSocket is NOT supported by your Web browser!");
 }
+
+function show_config(options_arr) {
+    document.getElementById("four-panel").innerHTML = "<form>";
+    for (let [key, value] of Object.entries(options_arr)) {
+
+        if (!isNaN(parseInt(value))) {
+            value = `<input id="${key}" type="number" value="${value}">`;
+        }else if (value === 'true') {
+            value = `<input type="checkbox" id="${key}" name="${key}" checked>`;
+        }else if (value === 'false') {
+            value = `<input type="checkbox" id="${key}" name="${key}">`;
+        }else{
+            value = `<input type="text" id="${key}" name="${key}" value="${value}">`;
+        }
+        document.getElementById("four-panel").innerHTML += `${key}: ${value}<br>\n`
+        console.log(`${key}: ${value}`);
+      }
+      document.getElementById("four-panel").innerHTML += "<br><input type='button' value='Save'>\n</form>";
+}
+
+// value = `<input type="checkbox" id="${key}" name="${key}" `
+// if (value){
+//     value += "checked>";
+// }else{
+//     value += ">";
+// }
+// break;
+// case 'string':
+// value = `<input type="text" id="${key}" name="${key}" value="${value}">`;
