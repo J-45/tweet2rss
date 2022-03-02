@@ -1,3 +1,3 @@
 # rTorrent-WUI
 
-rTorrent Web Uesr Interface
+rTorrent Web User Interface
