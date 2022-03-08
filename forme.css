@@ -1,65 +1,107 @@
-:root {
-    --orange: #ff8c00;
-    --height: 8px;
-    /* --percentStar: 75%;
-    --percentEnd: 100%; */
-    --borderWidth: 2px;
-    --segmentSpace: 3px;
+.all {
+    width: 100%;
+    min-width: 500px;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #ccc;
 }
 
-.ratioLvl {
-    position: fixed;
-    bottom: 13px;
-    left: 2px;
-    font-weight: bold;
-    font: arial;
-    font-size: 11px;
+.nav {
+    width: 333px;
+    margin: 0 auto;
+    background-color: #666;
 }
 
-.barBorder {
-    border-radius: 3px;
+.switch {
+    margin-right: 5px;
+    border: none;
+    background: none;
+}
+
+table {
+    table-layout: auto;
+    margin-top: 30px;
+    width: 100%;
+}
+
+th {
+    padding-bottom: 20px;
+}
+
+tr:nth-child(1) {
+    background-color: green;
+}
+
+tr>td:nth-child(1) {
+    width: 30%;
+}
+
+tr>td:nth-child(2) {
+    width: 10%;
+    text-align: center;
+}
+
+tr>td:nth-child(3) {
+    width: 10%;
+    text-align: center;
+}
+
+tr>td:nth-child(4) {
+    width: 10%;
+    text-align: center;
+}
+
+tr>td:nth-child(5) {
+    width: 10%;
+    text-align: center;
+}
+
+tr>td:nth-child(6) {
+    width: 10%;
+    text-align: center;
+}
+
+tr>td:nth-child(7) {
+    width: 20%;
+    text-align: center;
+}
+
+tr>td:nth-child(odd) {
+    background-color: red;
+}
+
+tr>td:nth-child(even) {
+    background-color: blue;
+}
+
+td {
+    max-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ratio {
+    width: 100%;
+    min-width: 500px;
+    max-width: 1000px;
     position: absolute;
-    left: 0px;
-    bottom: 0px;
-    width: calc(100vw - var(--borderWidth) * 2);
-    height: var(--height);
-    z-index: 0;
-    border: var(--borderWidth) solid black;
+    bottom: 10px;
+    margin-top: 15px;
+    height: 15px;
+    background-color: orange;
 }
 
-.barInside {
-    position: absolute;
-    left: 0px;
-    width: var(--percentStar);
-    height: var(--height);
-    background: var(--orange);
-    z-index: -2;
+.goodratio {
+    color: green;
+    font-weight: 1000;
 }
 
-.anim {
-    animation-duration: 1s;
-    animation-name: bar;
-    animation-iteration-count: 1;
-    animation-timing-function: linear;
-    animation-fill-mode: forwards;
-    /* https://developer.mozilla.org/fr/docs/Web/CSS/animation-fill-mode */
+.badratio {
+    color: red;
+    font-weight: 1000;
 }
 
-.segment {
-    float: left;
-    width: 12.5vw;
-    height: var(--height);
-    border-left: var(--segmentSpace) solid black;
-    margin-left: calc(0px - var(--segmentSpace) * 2);
-    /* background: grey; */
-    z-index: 999;
-}
-
-@keyframes bar {
-    0% {
-        width: var(--percentStar);
-    }
-    100% {
-        width: var(--percentEnd);
-    }
+* {
+    background: none !important;
 }
