@@ -1,3 +1,3 @@
-# rTorrent-WUI
+# Tweet 2 RSS
 
-rTorrent Web User Interface
+Get RSS feed from twitter account.
