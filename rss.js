@@ -20,13 +20,13 @@ http.createServer(async function(req, res) {
 <title>${twitter_account}'s tweets</title>
 <description>Twitter@${twitter_account}</description>
 <link>https://twitter.com/${twitter_account}</link>
-<atom:link href="http://217.160.13.95:8080/?from=${twitter_account}" rel="self" type="application/rss+xml"></atom:link>\n\n`;
+<atom:link href="http://127.0.0.1:8080/?from=${twitter_account}" rel="self" type="application/rss+xml"></atom:link>\n\n`;
         for (let index = 0; index < result.length; ++index) {
             let post = result[index];
             rss += `<item>
     <title>${post.slice(0, 100)}</title>
     <description>${post}</description>
-<guid>http://217.160.13.95:8080/?from=${twitter_account}_${post.length}</guid>
+<guid>http://127.0.0.1:8080/?from=${twitter_account}_${post.length}</guid>
 </item>`;
         }
         rss += `\n\n</channel>
@@ -35,8 +35,6 @@ http.createServer(async function(req, res) {
         res.end(rss);
     })
     .listen(8080);
-
-// http://127.0.0.1:8080/?from=playlostark
 
 async function tweet2rss(page, twitter_account) {
     let tweets = [];
